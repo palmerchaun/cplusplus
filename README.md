@@ -3,7 +3,8 @@
 
 <h3>Labs</h3>
 <ul>
-  <li><a href="labs/ascii-art-output">ASCII Art Output Lab - 9/9/20</a></li>
+  <li><a href="labs/ascii-art-output">ASCII Art Output - 9/9/20</a></li>
+  <li><a href="labs/format-output-cout">Formatting Output with cout</a></li>
 </ul>
 
 <h3>Tools used:</h3>
