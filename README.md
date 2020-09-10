@@ -1,7 +1,7 @@
 # Repository for all of my C++ homework
 <h5>by Seth Palmer</h5>
 
-<h3>Projects</h3>
+<h3>Labs</h3>
 <ul>
   <li><a href="labs/ascii-art-output">ASCII Art Output Lab - 9/9/20</a></li>
 </ul>
