@@ -3,7 +3,7 @@
 
 <h3>Projects</h3>
 <ul>
-  <li>ASCII Art Output Lab - 9/9/20</li>
+  <li><a href="labs/ascii-art-output">ASCII Art Output Lab - 9/9/20</a></li>
 </ul>
 
 <h3>Tools used:</h3>
