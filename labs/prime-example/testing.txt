@@ -1,0 +1,4 @@
+Input   Expected    Actual  ExpectedList        ActualList          Pass/Fail
+7       Prime       Prime   2,3,5,7             2,3,5,7             Pass
+15      !Prime      !Prime  2,3,5,7,11,13       2,3,5,7,11,13       Pass
+21      Prime       Prime   2,3,5,7,11,13,17,19 2,3,5,7,11,13,17,19 Pass

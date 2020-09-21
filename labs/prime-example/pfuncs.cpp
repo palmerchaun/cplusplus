@@ -24,18 +24,18 @@ bool isPrime(int num){
 }
 
 void listPrimes(int num){
-        bool nums [num + 1];
-        fill_n(nums, num + 1, true);
-        for (int i = 2; i <= num; i++){
-            if (nums[i]){
-                for (int j = 2 * i; j <= num; j += i){
-                    nums[j] = false;
-                }
+    bool nums [num + 1];
+    fill_n(nums, num + 1, true);
+    for (int i = 2; i <= num; i++){
+        if (nums[i]){
+            for (int j = 2 * i; j <= num; j += i){
+                nums[j] = false;
             }
         }
-        for (int i = 2; i <= num; i++){
-            if (nums[i]){
-                cout << i << endl;
-            }
+    }
+    for (int i = 2; i <= num; i++){
+        if (nums[i]){
+            cout << i << endl;
         }
+    }
 }

@@ -4,5 +4,10 @@ Prime Example header
 Seth Palmer
 */
 
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
+
 bool isPrime(int);
 void listPrimes(int);
+
+#endif
