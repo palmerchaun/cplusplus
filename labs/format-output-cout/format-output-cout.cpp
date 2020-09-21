@@ -1,8 +1,8 @@
-/******************************************************************************
-
-All program submissions need a correct header...
-
-*******************************************************************************/
+/*
+Formatting Output With Cout
+9/14/2020
+Seth Palmer
+*/
 
 #include <iostream>
 #include <iomanip>
@@ -28,4 +28,6 @@ int main()
     // output 15, 10, and 11 in base 16 (spelling fab)
     cout << setbase(16);
     cout << 15 << 10 << 11 << endl;
+
+    return 0;
 }
