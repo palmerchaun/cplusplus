@@ -10,7 +10,7 @@ Seth Palmer
 using namespace std;
 
 int main(){
-    int num;
+    int num = 1;
     while (num > 0){
         cout << "Pick a number to check (<1 to quit)" << endl;
         cin >> num;

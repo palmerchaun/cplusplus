@@ -1,0 +1,9 @@
+1.
+2. 0b tells the compiler that it is a binary number. Prints out the decimal value
+3. In an if statement, anything other than 0 evaluates to true
+4. 'a' unicode value is decreased by 20, resulting in a new char. The new char is then output.
+5. 0 before 10 tells it to interpret the number in base 8
+6. Char value of 20 is a space
+7. Redefined while to be equivalent to if. After the redefinition, 'while' runs the 'if' operation
+8. boolalpha turns the 0 into "false". "false" == "false", so it displays "true".
+9. Displays the int value of the hex number 0x26 (38)
