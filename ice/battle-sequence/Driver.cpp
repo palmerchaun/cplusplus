@@ -26,8 +26,8 @@ int main()
     c2.hitPoints = 150;
     c2.strength = 7;
 
-    battleNum = 0;
     battle(c1, c2);
+    cout << battleNum;
 }
 
 //1. In Character.h create a character struct that can hold at least a status, hitPoints, and a strength value

@@ -22,3 +22,5 @@ void battle(character, character);
 typedef character hero, badguy;
 
 STATUS statusCheck(character);
+
+extern int battleNum;
