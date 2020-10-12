@@ -1,9 +1,10 @@
 #include <iostream>
+#include <fstream>
 #include "header.h"
 
 using namespace std;
 
-void move(char d, hero &h, map &m){
+void move(char d, hero &h){
     switch(d){
         case 'n':
             if (h.yPos > 0) h.yPos--;
@@ -20,34 +21,121 @@ void move(char d, hero &h, map &m){
         default:
             break;
     }
+}
 
-    if (!m.discovered[h.yPos][h.xPos]){
-        switch(m.squares[h.yPos][h.xPos]){
-            case trap:
-                cout << "You stepped on a trap and took 3 damage!" << endl;
-                h.health -= 3;
-                break;
-            case potion:
-                if (h.health < 6){
-                    cout << "You found a potion and regained 5 health!" << endl;
-                    h.health += 5;
-                }else if (h.health < 10){
-                    cout << "You found a potion and regained " << 10 - h.health << " health!" << endl;
-                    h.health += 10 - h.health;
-                }else {
-                    cout << "You found a potion, but you are already at full health!" << endl;
-                }
-                break;
-            default:
-                break;
+void battle(hero &h){
+    if (system("clear")){
+        system("cls");
+    }
+    monster m;
+    m.name = "Dragon";
+    m.health = 20;
+    m.strength = 5;
+
+    int attack = 0;
+    int given = 0;
+    int taken = 0;
+
+    cout << "You encountered a " << m.name << endl;
+    string line;
+    ifstream myfile ("monster");
+    if (myfile.is_open())
+    {
+        while ( getline (myfile,line) ){
+            cout << line << endl;
+        }
+        myfile.close();
+    }
+    cout << h.name << " health: " << h.health << "\t\t";
+    cout << m.name << " health: " << m.health;
+
+    cout << endl << endl << endl;
+
+    cout << "1. Accurate Attack" << endl;
+    cout << "2. Heavy Attack" << endl;
+
+    cin >> attack;
+    if (!cin.good()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        given = 0;
+    }else{
+        if (attack == 1){
+            given = h.strength;
+        }else if (attack == 2){
+            given = rand() % (h.strength * 2) + 1;
+        }else{
+            given = 0;
         }
     }
+    m.health -= given;
 
-	m.discovered[h.yPos][h.xPos] = true;
+    taken = rand() % m.strength + 1;
+    h.health -= taken;
 
-    if(h.yPos == 9 && h.xPos == 9){
-        m = generate();
-        h.yPos = 0;
-        h.xPos = 0;
+    if (system("clear")){
+        system("cls");
+    }
+
+    while(h.health > 0 && m.health > 0){
+        ifstream myfile ("monster");
+        if (myfile.is_open())
+        {
+            while ( getline (myfile,line) )
+            {
+            cout << line << '\n';
+            }
+            myfile.close();
+        }
+        if (attack == 1){
+            cout << h.name << " swung for " << given << endl;
+        }else if(attack == 2){
+            if (given >= h.strength){
+                cout << h.name << " made a nice heavy attack for " << given << endl;
+            }else{
+                cout << h.name << " made a poor heavy attack for " << given << endl;
+            }
+        }else{
+            cout << h.name << " attempted an invalid attack and dealt 0" << endl;
+        }
+        cout << m.name << " swung for " << taken << endl;
+        cout << h.name << " health: " << h.health << "\t\t";
+        cout << m.name << " health: " << m.health;
+
+        cout << endl << endl << endl;
+
+        cout << "1. Punch" << endl;
+        cout << "2. Kick" << endl;
+
+        cin >> attack;
+
+        if (!cin.good()){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            given = 0;
+        }else{
+            if (attack == 1){
+                given = h.strength;
+            }else if (attack == 2){
+                given = rand() % (h.strength * 2) + 1;
+            }else{
+                given = 0;
+            }
+        }
+        m.health -= given;
+
+        taken = rand() % m.strength + 1;
+        h.health -= taken;
+
+        if (system("clear")){
+            system("cls");
+        }
+    }
+    string str;
+    if (h.health > 0){
+        cout << "You defeated " << m.name << "!" << endl;
+        cout << "Press ENTER to continue:" << endl;
+
+        cin >> str;
     }
 }

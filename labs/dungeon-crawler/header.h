@@ -3,24 +3,32 @@
 
 #include <string>
 
-enum TYPE {blank, trap, potion};
+enum TYPE {BLANK, POTION, TRAP, ENTRANCE, EXIT};
 
 struct hero {
     std::string name;
     int health;
     int xPos;
     int yPos;
+    int strength;
 };
 
-struct map {
-    static int mapNum;
-    bool discovered [10][10];
-    TYPE squares [10][10];
+struct monster {
+    std::string name;
+    int health;
+    int strength;
 };
 
-map generate();
-void draw(map &, hero &);
-void move(char, hero &, map &);
+class map {
+    public:
+        bool discovered [10][10];
+        TYPE squares [10][10];
+        void draw(hero &);
+        void generate();
+        TYPE checkSquare(hero &);
+};
 
+void move(char, hero &);
+void battle(hero &);
 
 #endif
