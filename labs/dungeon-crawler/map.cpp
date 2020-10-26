@@ -19,13 +19,13 @@ void map::generate(){
 		for (int j = 0; j < 10; j++){
 			int num = rand() % 100;
 			switch(num){
-				case 0 ... 15:
+				case 0 ... 20:
 					squares[i][j] = TRAP;
 					break;
-				case 16 ... 22:
+				case 21 ... 30:
 					squares[i][j] = POTION;
 					break;
-                case 23 ... 50:
+                case 31 ... 60:
                     squares[i][j] = BLOCKED;
                     break;
 				default:
