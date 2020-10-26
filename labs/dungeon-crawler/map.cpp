@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//Generate a map
+/*********************************************/
 void map::generate(){
 	srand(time(NULL));	
 
@@ -15,14 +17,17 @@ void map::generate(){
 
 	for (int i = 0; i < 10; i++){
 		for (int j = 0; j < 10; j++){
-			int num = rand() % 10;
+			int num = rand() % 100;
 			switch(num){
-				case 8:
+				case 0 ... 15:
 					squares[i][j] = TRAP;
 					break;
-				case 9:
+				case 16 ... 22:
 					squares[i][j] = POTION;
 					break;
+                case 23 ... 50:
+                    squares[i][j] = BLOCKED;
+                    break;
 				default:
 					squares[i][j] = BLANK;
 					break;
@@ -34,7 +39,10 @@ void map::generate(){
 	squares[9][9] = EXIT;
 	discovered[0][0] = true;
 }
+/*********************************************/
 
+//Draw the map
+/*********************************************/
 void map::draw(hero &h){
     if (system("clear")){
         system("cls");
@@ -46,6 +54,10 @@ void map::draw(hero &h){
 		for (int j = 0; j < 10; j++){
 			if (h.yPos == i && h.xPos == j){
 				cout << " H |";
+            }else if (squares[i][j] == BLOCKED){
+                cout << "||||";
+            }else if (squares[i][j] == EXIT){
+                cout << " O |";
 			}else if (discovered[i][j]){
                 cout << "   |";
             }else{
@@ -55,41 +67,62 @@ void map::draw(hero &h){
         cout << endl << "-----------------------------------------" << endl;
 	}
 }
+/*********************************************/
 
+//Check what square the hero is on to determine what event is triggered
+/*********************************************/
 TYPE map::checkSquare(hero &h){
-    /*if (!discovered[h.yPos][h.xPos]){
-        switch(squares[h.yPos][h.xPos]){
-            case trap:
-                cout << "You stepped on a trap and took 3 damage!" << endl;
-                h.health -= 3;
-                break;
-            case potion:
-                if (h.health < 6){
-                    cout << "You found a potion and regained 5 health!" << endl;
-                    h.health += 5;
-                }else if (h.health < 10){
-                    cout << "You found a potion and regained " << 10 - h.health << " health!" << endl;
-                    h.health += 10 - h.health;
-                }else {
-                    cout << "You found a potion, but you are already at full health!" << endl;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-	discovered[h.yPos][h.xPos] = true;
-
-    if(h.yPos == 9 && h.xPos == 9){
-        cout << "You won!" << endl;
-    }
-    */
-
-
+    static int numChecked = 0;
     if (!discovered[h.yPos][h.xPos]){
+        numChecked++;
+        if (numChecked > 1){
+            cout << h.name << " has explored " << numChecked << " rooms." << endl;
+        }else{
+            cout << h.name << " has explored " << numChecked << " room." << endl;
+        }
         discovered[h.yPos][h.xPos] = true;
         return squares[h.yPos][h.xPos];
     }
     return BLANK;
 }
+/*********************************************/
+
+//Recursively check if there is a possible route through the maze
+/*********************************************/
+bool checked[10][10];
+void map::checkNode(int i, int j){
+    if (squares[i][j] == BLOCKED){
+        checked[i][j] = true;
+        return;
+    }else{
+        checked[i][j] = true;
+    }
+    if (i < 9 && !checked[i+1][j]){
+        checkNode(i+1, j);
+    }
+    if (i > 0 && !checked[i-1][j]){
+        checkNode(i-1, j);
+    }
+    if (j > 0 && !checked[i][j-1]){
+        checkNode(i, j-1);
+    }
+    if (j < 9 && !checked[i][j+1]){
+        checkNode(i, j+1);
+    }
+
+}
+
+bool map::checkMap(){
+    for (int i = 0; i < 10; i++){
+        for (int j = 0; j < 10; j++){
+            checked[i][j] = false;
+        }
+    }
+
+    checkNode(0, 0);
+
+    if (checked[9][9]) return true;
+
+    return false;
+}
+/*********************************************/
