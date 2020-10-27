@@ -22,8 +22,8 @@ struct monster {
 
 class map {
     public:
-        bool discovered [10][10];
-        TYPE squares [10][10];
+        bool discovered [20][60];
+        TYPE squares [20][60];
         void draw(hero &);
         void generate();
         TYPE checkSquare(hero &);

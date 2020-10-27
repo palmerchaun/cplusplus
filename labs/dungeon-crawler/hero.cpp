@@ -12,10 +12,10 @@ void move(char d, hero &h, map &m){
             if (h.yPos > 0 && m.squares[h.yPos - 1][h.xPos] != BLOCKED) h.yPos--;
             break;
         case 's':
-            if (h.yPos < 9 && m.squares[h.yPos + 1][h.xPos] != BLOCKED) h.yPos++;
+            if (h.yPos < 19 && m.squares[h.yPos + 1][h.xPos] != BLOCKED) h.yPos++;
             break;
         case 'e':
-            if (h.xPos < 9 && m.squares[h.yPos][h.xPos + 1] != BLOCKED) h.xPos++;
+            if (h.xPos < 59 && m.squares[h.yPos][h.xPos + 1] != BLOCKED) h.xPos++;
             break;
         case 'w':
             if (h.xPos > 0 && m.squares[h.yPos][h.xPos - 1] != BLOCKED) h.xPos--;
