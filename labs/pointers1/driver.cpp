@@ -1,3 +1,9 @@
+/*
+ * Pointers1
+ * Seth Palmer
+ * CS 3150
+ */
+
 #include <iostream>
 #include <string>
 #include "Customer.h"
