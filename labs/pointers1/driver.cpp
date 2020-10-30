@@ -63,6 +63,6 @@ int main(int argsc, char** argsv){
 
         }
     }else{
-        cout << "Invalid format! Please make sure to use <name> <id> and <balance>!" << endl;
+        cout << "Invalid format! Please make sure to follow the execution command with <name> <id> <balance>" << endl;
     }
 }
