@@ -187,7 +187,6 @@ void battle(hero &h){
     cin >> attack;
     if (!cin.good()){
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         given = 0;
     }else{
         if (attack == 1){
@@ -242,7 +241,6 @@ void battle(hero &h){
 
         if (!cin.good()){
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             given = 0;
         }else{
             if (attack == 1){
